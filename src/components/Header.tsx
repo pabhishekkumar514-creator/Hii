@@ -1,5 +1,4 @@
-import React from 'react';
-import { Smartphone, Moon, Sun, PhoneCall, Code2, ShieldCheck, Sparkles, Sliders } from 'lucide-react';
+import { Smartphone, Moon, Sun, PhoneCall, Code2, ShieldCheck, Sparkles, Sliders, Package } from 'lucide-react';
 import { AppSettings, BusyMode } from '../types';
 
 interface HeaderProps {
@@ -8,6 +7,7 @@ interface HeaderProps {
   onToggleTheme: () => void;
   onOpenCallSimulator: () => void;
   onOpenSourceCode: () => void;
+  onOpenApkModal: () => void;
   isDeviceFrame: boolean;
   onToggleDeviceFrame: () => void;
 }
@@ -18,6 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleTheme,
   onOpenCallSimulator,
   onOpenSourceCode,
+  onOpenApkModal,
   isDeviceFrame,
   onToggleDeviceFrame,
 }) => {
@@ -46,10 +47,20 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Controls Zone */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Get APK File CTA */}
+          <button
+            onClick={onOpenApkModal}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 rounded-xl transition-all shadow-sm shadow-emerald-500/25 whitespace-nowrap cursor-pointer"
+            title="Download APK / Compile via GitHub Actions or Android Studio"
+          >
+            <Package className="w-4 h-4" />
+            <span>Get APK</span>
+          </button>
+
           {/* Test Call Simulator Trigger */}
           <button
             onClick={onOpenCallSimulator}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-xl transition-all shadow-sm shadow-blue-500/25 whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-xl transition-all shadow-sm shadow-blue-500/25 whitespace-nowrap cursor-pointer"
             title="Simulate Incoming Phone Call to test Auto-Reply"
           >
             <PhoneCall className="w-4 h-4" />

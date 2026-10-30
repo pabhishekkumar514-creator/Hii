@@ -1,0 +1,18 @@
+{
+  "name": "BusyMate – Smart Offline Auto Reply Assistant",
+  "short_name": "BusyMate",
+  "description": "Smart offline auto reply assistant for exams, meetings, driving, sleeping, and study modes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%232563eb'/><path d='M30 40 L50 25 L70 40 L50 55 Z M50 55 L50 75' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

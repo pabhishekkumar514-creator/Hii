@@ -20,6 +20,7 @@ import {
   PhoneCall,
   Volume2,
   VolumeX,
+  Package,
 } from 'lucide-react';
 import { BusyMode, AppSettings, BusySchedule, CallLogItem } from '../types';
 import { LocalDatabase } from '../services/db';
@@ -34,6 +35,7 @@ interface DashboardProps {
   onSelectMode: (modeId: string) => void;
   onNavigateTab: (tab: string) => void;
   onOpenCallSimulator: () => void;
+  onOpenApkModal?: () => void;
 }
 
 const MODE_ICON_MAP: Record<string, React.ElementType> = {
@@ -56,6 +58,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onSelectMode,
   onNavigateTab,
   onOpenCallSimulator,
+  onOpenApkModal,
 }) => {
   const [editingMessage, setEditingMessage] = useState(false);
   const [tempMessage, setTempMessage] = useState(activeMode.activeMessage || activeMode.defaultMessage);
@@ -196,6 +199,40 @@ export const Dashboard: React.FC<DashboardProps> = ({
             <PhoneCall className="w-3.5 h-3.5" />
             <span>Test Incoming Call Ring</span>
             <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* APK & Android Studio Export Strip */}
+      <div className="p-4 sm:p-5 rounded-3xl bg-slate-900 border border-slate-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+            <Package className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-semibold text-sm text-white">
+              Looking for the Android APK file?
+            </h4>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Download the complete Android Studio project or build the APK online via GitHub Actions.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          {onOpenApkModal && (
+            <button
+              onClick={onOpenApkModal}
+              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs rounded-xl transition-all shadow-sm shadow-emerald-500/20 cursor-pointer whitespace-nowrap"
+            >
+              Get APK File
+            </button>
+          )}
+          <button
+            onClick={() => onNavigateTab('android_code')}
+            className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-colors whitespace-nowrap"
+          >
+            View Source Code
           </button>
         </div>
       </div>

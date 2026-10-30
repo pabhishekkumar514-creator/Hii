@@ -29,6 +29,7 @@ import { CallLogsView } from './components/CallLogsView';
 import { PermissionsView } from './components/PermissionsView';
 import { AndroidCodeHub } from './components/AndroidCodeHub';
 import { IncomingCallModal } from './components/IncomingCallModal';
+import { ApkDownloadModal } from './components/ApkDownloadModal';
 
 type NavTab =
   | 'dashboard'
@@ -51,6 +52,7 @@ export default function App() {
 
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
   const [isCallSimulatorOpen, setIsCallSimulatorOpen] = useState(false);
+  const [isApkModalOpen, setIsApkModalOpen] = useState(false);
   const [isDeviceFrame, setIsDeviceFrame] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -119,6 +121,7 @@ export default function App() {
             onSelectMode={handleSelectMode}
             onNavigateTab={(tab) => setActiveTab(tab as NavTab)}
             onOpenCallSimulator={() => setIsCallSimulatorOpen(true)}
+            onOpenApkModal={() => setIsApkModalOpen(true)}
           />
         );
       case 'exam':
@@ -175,6 +178,7 @@ export default function App() {
         onToggleTheme={toggleTheme}
         onOpenCallSimulator={() => setIsCallSimulatorOpen(true)}
         onOpenSourceCode={() => setActiveTab('android_code')}
+        onOpenApkModal={() => setIsApkModalOpen(true)}
         isDeviceFrame={isDeviceFrame}
         onToggleDeviceFrame={() => setIsDeviceFrame(!isDeviceFrame)}
       />
@@ -282,6 +286,12 @@ export default function App() {
         onClose={() => setIsCallSimulatorOpen(false)}
         activeMode={activeMode}
         settings={settings}
+      />
+
+      {/* APK Generator & Download Modal */}
+      <ApkDownloadModal
+        isOpen={isApkModalOpen}
+        onClose={() => setIsApkModalOpen(false)}
       />
     </div>
   );
